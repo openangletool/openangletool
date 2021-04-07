@@ -1,0 +1,23 @@
+body.app div.input-group-prepend span.input-group-text,
+body.app div.input-group-append span.input-group-text
+{
+   width: 3.5em;
+}
+
+body.app div.card-header {
+   background-color: #ccc;
+}
+
+body.app div.card-body {
+   background-color: #eee;
+}
+
+body.app label.form-label {
+   font-size: 0.8em;
+}
+
+body.app div.card, .app-shadow
+{
+   -webkit-box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.1); 
+   box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.1);
+}
