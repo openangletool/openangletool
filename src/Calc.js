@@ -1,7 +1,7 @@
 class Calc {
 
     constructor() {
-        this.angle = 0;
+        this.solved = false;
     }
 
     set(p) {
@@ -31,6 +31,7 @@ class Calc {
         var xb = this.x(b);
         const eps = 1e-5;
 
+	this.solved = false;
         while ((Math.sign(xa) !== Math.sign(xb)) && (b - a) > eps) {
             var m = 0.5 * (a + b);
             var xm = this.x(m);
@@ -41,7 +42,12 @@ class Calc {
                 b = m;
                 xb = xm;
             }
+	    this.solved = true;
         }
+
+        if (!this.solved) {
+	   return;
+	}
 
         this.alpha = 0.5 * (a + b);
 
@@ -70,12 +76,20 @@ class Calc {
     }
 
     get() {
-        return {
-            alpha: this.deg(this.alpha).toFixed(1).toString(),
-            h: this.h.toFixed(1).toString(),
-            hr: this.hr.toFixed(1).toString(),
-            hn: this.hn.toFixed(1).toString()
-        };
+        if (this.solved) {
+	   return {
+	       alpha: this.deg(this.alpha).toFixed(1).toString(),
+	       h: this.h.toFixed(1).toString(),
+	       hr: this.hr.toFixed(1).toString(),
+	       hn: this.hn.toFixed(1).toString()
+	   };
+        }
+	return {
+	    alpha: '-',
+	    h: '-',
+	    hr: '-',
+	    hn: '-'
+	};
     }
 
 }

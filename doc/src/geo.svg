@@ -37,17 +37,17 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1644"
-     inkscape:window-height="1021"
+     inkscape:window-width="1356"
+     inkscape:window-height="812"
      id="namedview1224"
      showgrid="false"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="275.36625"
-     inkscape:cy="588.11949"
-     inkscape:window-x="36"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer3" />
+     inkscape:zoom="0.45096983"
+     inkscape:cx="278.37228"
+     inkscape:cy="590.14039"
+     inkscape:window-x="54"
+     inkscape:window-y="16"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer4" />
   <title
      id="title2">Exported SVG</title>
   <style
@@ -220,7 +220,8 @@ fill:none;
      id="layer2"
      inkscape:label="Dimensions"
      style="display:inline"
-     transform="translate(0,-66.002989)">
+     transform="translate(0,-66.002989)"
+     sodipodi:insensitive="true">
     <path
        style="fill:none;stroke:#ff19ff;stroke-width:0.1069255;stroke-linecap:round;stroke-linejoin:round"
        d="m 115.32661,145.26324 0.0625,0.314 0.1775,0.266 0.266,0.1775 0.3135,0.0625 0.314,-0.0625 0.266,-0.1775 0.1775,-0.266 0.0625,-0.314 -0.0625,-0.3135 -0.1775,-0.266 -0.266,-0.1775 -0.314,-0.0625 -0.3135,0.0625 -0.266,0.1775 -0.1775,0.266 -0.0625,0.3135"
@@ -3805,7 +3806,8 @@ fill:none;
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Text"
-     style="display:inline">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -3914,5 +3916,15 @@ fill:none;
          x="100.41144"
          y="123.60905"
          style="font-size:4.23333311px;fill:#ff19ff;fill-opacity:1;stroke-width:0.26458332">o</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="chain">
+    <path
+       style="fill:none;stroke:#00ff00;stroke-width:0.52916663;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:2.11666653,1.05833327,0.52916663,1.05833327;stroke-dashoffset:0"
+       d="m 88.62111,168.33475 -28.988001,-55.371 48.906121,-44.99619 4.08188,4.369689 -24,95.997501"
+       id="path5143"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>
