@@ -25,11 +25,13 @@ class Calc {
     }
 
     solve() {
-        var a = 0;
+        var a = 45./180.*Math.PI;
         var b = Math.PI;
         var xa = this.x(a);
         var xb = this.x(b);
         const eps = 1e-5;
+
+        console.log('solve: a='+a+', b='+b+', xa='+xa+', xb='+xb);
 
 	this.solved = false;
         while ((Math.sign(xa) !== Math.sign(xb)) && (b - a) > eps) {
