@@ -3,13 +3,13 @@
 [https://openangletool.github.io](https://openangletool.github.io)
 
 _Calculate the required distance setting to reach a given
-sharpening angle for wheel based grinding machines._
+sharpening angle for wheel-based grinding machines._
 
 ## Features
 
 ### Progressive Web App
  - zero install &ndash; use in any modern desktop or mobile browser
- - optionally install web app to device &ndash; full offline-cabable app experience
+ - optionally install web app to device &ndash; full offline-capable app experience
 
 ### Profiles
  - choose from presets and customize them as needed with your preferences
