@@ -4,14 +4,18 @@ class Calc {
         this.solved = false;
     }
 
+    parseFloatOrZero(value) {
+        return value === '' ? 0.0 : Number.parseFloat(value);
+    }
+
     set(p) {
-        this.dw = Number.parseFloat(p.dw);
-        this.lp = Number.parseFloat(p.lp);
-        this.beta = this.rad(Number.parseFloat(p.beta));
-        this.ds = Number.parseFloat(p.ds);
-        this.dj = Number.parseFloat(p.dj);
-        this.o = Number.parseFloat(p.o);
-        this.hc = Number.parseFloat(p.hc);
+        this.dw = this.parseFloatOrZero(p.dw);
+        this.lp = this.parseFloatOrZero(p.lp);
+        this.beta = this.rad(this.parseFloatOrZero(p.beta));
+        this.ds = this.parseFloatOrZero(p.ds);
+        this.dj = this.parseFloatOrZero(p.dj);
+        this.o = this.parseFloatOrZero(p.o);
+        this.hc = this.parseFloatOrZero(p.hc);
 
         this.solve();
     }
