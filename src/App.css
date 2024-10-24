@@ -1,5 +1,4 @@
-body.app div.input-group-prepend span.input-group-text,
-body.app div.input-group-append span.input-group-text
+body.app div.input-group span.input-group-text
 {
    width: 3.5em;
 }

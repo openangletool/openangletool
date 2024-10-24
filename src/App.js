@@ -14,8 +14,8 @@ import { Trash, FileEarmarkPlus } from 'react-bootstrap-icons';
 
 import Calc from './Calc.js';
 import './App.css';
-import Geo1 from './geo1.svg';
-import Geo2 from './geo2.svg';
+import Geo1 from './geo1.jsx';
+import Geo2 from './geo2.jsx';
 
 class App extends React.Component {
     constructor(props) {
@@ -96,8 +96,10 @@ class App extends React.Component {
         this.calc = new Calc();
     }
 
-    handleSelect(key, ev) {
-        const i = parseInt(key, 10);
+    handleSelect(ev) {
+        var target = ev.target;
+        var profileIndex = target.getAttribute('data-index');
+        const i = parseInt(profileIndex, 10);
         if (i < this.state.profiles.length) {
             this.setState({ activeProfile: i });
         } else {
@@ -166,18 +168,19 @@ class App extends React.Component {
         const c = this.calc.get();
 
         var selectItems = [];
-        selectItems.push(<Dropdown.Header>my Profiles</Dropdown.Header>);
+        selectItems.push(<Dropdown.Header key={'my-profiles'}>my Profiles</Dropdown.Header>);
         this.state.profiles.forEach((profile, index) => {
             selectItems.push(
-                <Dropdown.Item active={index === this.state.activeProfile} eventKey={index} onSelect={this.handleSelect}>
+                <Dropdown.Item active={index === this.state.activeProfile} data-index={index} onClick={this.handleSelect} key={'profile-'+index}>
                     {profile.name}
                 </Dropdown.Item>
             );
         });
-        selectItems.push(<Dropdown.Header>add Preset</Dropdown.Header>);
+        selectItems.push(<Dropdown.Divider key={'divider'} />);
+        selectItems.push(<Dropdown.Header key={'presets'}>add Preset</Dropdown.Header>);
         this.presets.forEach((profile, index) => {
             selectItems.push(
-                <Dropdown.Item eventKey={this.state.profiles.length + index} onSelect={this.handleSelect}>
+                <Dropdown.Item data-index={this.state.profiles.length + index} onClick={this.handleSelect} key={'preset-'+index}>
                     {profile.name}
                 </Dropdown.Item>
             );
@@ -191,7 +194,7 @@ class App extends React.Component {
                             <Dropdown>
                                 <Dropdown.Toggle id="machine" size="lg" className="app-shadow">
                                     Profiles
-			                    </Dropdown.Toggle>
+                                </Dropdown.Toggle>
                                 <Dropdown.Menu className="app-shadow">
                                     {selectItems}
                                 </Dropdown.Menu>
@@ -200,10 +203,8 @@ class App extends React.Component {
                         <Col sm="8">
                             <InputGroup className="app-shadow">
                                 <Form.Control size="lg" type="text" name="name" value={profile.name} onChange={this.handleChange} />
-                                <InputGroup.Append>
-                                    <Button variant="success" size="lg" title="duplicate" onClick={this.handleDuplicate}>&nbsp;<FileEarmarkPlus />&nbsp;</Button>
-                                    <Button variant="danger" size="lg" title="remove" onClick={this.handleRemove} disabled={this.state.profiles.length <= 1}>&nbsp;<Trash />&nbsp;</Button>
-                                </InputGroup.Append>
+                                <Button variant="success" size="lg" title="duplicate" onClick={this.handleDuplicate}>&nbsp;<FileEarmarkPlus />&nbsp;</Button>
+                                <Button variant="danger" size="lg" title="remove" onClick={this.handleRemove} disabled={this.state.profiles.length <= 1}>&nbsp;<Trash />&nbsp;</Button>
                             </InputGroup>
                         </Col>
                     </Row>
@@ -214,20 +215,16 @@ class App extends React.Component {
                         <Card.Body>
                             <Row>
                                 <Col lg={3} className="mb-2">
-                                    <img src={Geo1} />
+                                    <Geo1 />
                                 </Col>
                                 <Col lg={9}>
                                     <Form.Group as={Row} controlId="dw">
                                         <Form.Label column sm={3}>Wheel Diameter</Form.Label>
                                         <Col sm={9}>
                                             <InputGroup>
-                                                <InputGroup.Prepend>
-                                                    <InputGroup.Text>d<sub>w</sub></InputGroup.Text>
-                                                </InputGroup.Prepend>
+                                                <InputGroup.Text>d<sub>w</sub></InputGroup.Text>
                                                 <Form.Control type="text" name="dw" value={profile.dw} onChange={this.handleChange} />
-                                                <InputGroup.Append>
-                                                    <InputGroup.Text>mm</InputGroup.Text>
-                                                </InputGroup.Append>
+                                                <InputGroup.Text>mm</InputGroup.Text>
                                             </InputGroup>
                                         </Col>
                                     </Form.Group>
@@ -235,13 +232,9 @@ class App extends React.Component {
                                         <Form.Label column sm={3}>Projection Distance</Form.Label>
                                         <Col sm={9}>
                                             <InputGroup>
-                                                <InputGroup.Prepend>
-                                                    <InputGroup.Text>l<sub>p</sub></InputGroup.Text>
-                                                </InputGroup.Prepend>
+                                                <InputGroup.Text>l<sub>p</sub></InputGroup.Text>
                                                 <Form.Control type="text" name="lp" value={profile.lp} onChange={this.handleChange} />
-                                                <InputGroup.Append>
-                                                    <InputGroup.Text>mm</InputGroup.Text>
-                                                </InputGroup.Append>
+                                                <InputGroup.Text>mm</InputGroup.Text>
                                             </InputGroup>
                                         </Col>
                                     </Form.Group>
@@ -249,13 +242,9 @@ class App extends React.Component {
                                         <Form.Label column sm={3}>Grind Angle</Form.Label>
                                         <Col sm={9}>
                                             <InputGroup>
-                                                <InputGroup.Prepend>
-                                                    <InputGroup.Text>β</InputGroup.Text>
-                                                </InputGroup.Prepend>
+                                                <InputGroup.Text>β</InputGroup.Text>
                                                 <Form.Control type="text" name="beta" value={profile.beta} onChange={this.handleChange} />
-                                                <InputGroup.Append>
-                                                    <InputGroup.Text>°</InputGroup.Text>
-                                                </InputGroup.Append>
+                                                <InputGroup.Text>°</InputGroup.Text>
                                             </InputGroup>
                                         </Col>
                                     </Form.Group>
@@ -263,13 +252,9 @@ class App extends React.Component {
                                         <Form.Label column sm={3}>Wheel Distance</Form.Label>
                                         <Col sm={9}>
                                             <InputGroup>
-                                                <InputGroup.Prepend>
-                                                    <InputGroup.Text>h<sub>r</sub></InputGroup.Text>
-                                                </InputGroup.Prepend>
+                                                <InputGroup.Text>h<sub>r</sub></InputGroup.Text>
                                                 <Form.Control type="text" readOnly placeholder={c.hr} />
-                                                <InputGroup.Append>
-                                                    <InputGroup.Text>mm</InputGroup.Text>
-                                                </InputGroup.Append>
+                                                <InputGroup.Text>mm</InputGroup.Text>
                                             </InputGroup>
                                         </Col>
                                     </Form.Group>
@@ -278,13 +263,9 @@ class App extends React.Component {
                                             <Form.Label column sm={3}>Case Distance</Form.Label>
                                             <Col sm={9}>
                                                 <InputGroup>
-                                                    <InputGroup.Prepend>
-                                                        <InputGroup.Text>h<sub>n</sub></InputGroup.Text>
-                                                    </InputGroup.Prepend>
+                                                    <InputGroup.Text>h<sub>n</sub></InputGroup.Text>
                                                     <Form.Control type="text" readOnly placeholder={c.hn} />
-                                                    <InputGroup.Append>
-                                                        <InputGroup.Text>mm</InputGroup.Text>
-                                                    </InputGroup.Append>
+                                                    <InputGroup.Text>mm</InputGroup.Text>
                                                 </InputGroup>
                                             </Col>
                                         </Form.Group>
@@ -296,24 +277,20 @@ class App extends React.Component {
                     <Card className="mb-4">
                         <Card.Header>
                             Machine Settings
-		                </Card.Header>
+                                </Card.Header>
                         <Card.Body>
                             <Row>
                                 <Col lg={3} className="mb-2">
-                                    <img src={Geo2} />
+                                    <Geo2 />
                                 </Col>
                                 <Col lg={9}>
                                     <Form.Group as={Row} controlId="ds">
                                         <Form.Label column sm={3}>Support Bar Diameter</Form.Label>
                                         <Col sm={9}>
                                             <InputGroup>
-                                                <InputGroup.Prepend>
-                                                    <InputGroup.Text>d<sub>s</sub></InputGroup.Text>
-                                                </InputGroup.Prepend>
+                                                <InputGroup.Text>d<sub>s</sub></InputGroup.Text>
                                                 <Form.Control type="text" name="ds" value={profile.ds} onChange={this.handleChange} />
-                                                <InputGroup.Append>
-                                                    <InputGroup.Text>mm</InputGroup.Text>
-                                                </InputGroup.Append>
+                                                <InputGroup.Text>mm</InputGroup.Text>
                                             </InputGroup>
                                         </Col>
                                     </Form.Group>
@@ -321,13 +298,9 @@ class App extends React.Component {
                                         <Form.Label column sm={3}>Knife Jig Diameter</Form.Label>
                                         <Col sm={9}>
                                             <InputGroup>
-                                                <InputGroup.Prepend>
-                                                    <InputGroup.Text>d<sub>j</sub></InputGroup.Text>
-                                                </InputGroup.Prepend>
+                                                <InputGroup.Text>d<sub>j</sub></InputGroup.Text>
                                                 <Form.Control type="text" name="dj" value={profile.dj} onChange={this.handleChange} />
-                                                <InputGroup.Append>
-                                                    <InputGroup.Text>mm</InputGroup.Text>
-                                                </InputGroup.Append>
+                                                <InputGroup.Text>mm</InputGroup.Text>
                                             </InputGroup>
                                         </Col>
                                     </Form.Group>
@@ -335,13 +308,9 @@ class App extends React.Component {
                                         <Form.Label column sm={3}>Support Bar Offset</Form.Label>
                                         <Col sm={9}>
                                             <InputGroup>
-                                                <InputGroup.Prepend>
-                                                    <InputGroup.Text>o</InputGroup.Text>
-                                                </InputGroup.Prepend>
+                                                <InputGroup.Text>o</InputGroup.Text>
                                                 <Form.Control type="text" name="o" value={profile.o} onChange={this.handleChange} />
-                                                <InputGroup.Append>
-                                                    <InputGroup.Text>mm</InputGroup.Text>
-                                                </InputGroup.Append>
+                                                <InputGroup.Text>mm</InputGroup.Text>
                                             </InputGroup>
                                         </Col>
                                     </Form.Group>
@@ -349,13 +318,9 @@ class App extends React.Component {
                                         <Form.Label column sm={3}>Case Height</Form.Label>
                                         <Col sm={9}>
                                             <InputGroup>
-                                                <InputGroup.Prepend>
-                                                    <InputGroup.Text>h<sub>c</sub></InputGroup.Text>
-                                                </InputGroup.Prepend>
+                                                <InputGroup.Text>h<sub>c</sub></InputGroup.Text>
                                                 <Form.Control type="text" name="hc" value={profile.hc} onChange={this.handleChange} />
-                                                <InputGroup.Append>
-                                                    <InputGroup.Text>mm</InputGroup.Text>
-                                                </InputGroup.Append>
+                                                <InputGroup.Text>mm</InputGroup.Text>
                                             </InputGroup>
                                         </Col>
                                     </Form.Group>
@@ -374,10 +339,10 @@ class App extends React.Component {
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => this.handleDeleteConfirmClose(false)}>
                             Cancel
-		                </Button>
+                        </Button>
                         <Button variant="danger" onClick={() => this.handleDeleteConfirmClose(true)}>
                             Delete
-		                </Button>
+                        </Button>
                     </Modal.Footer>
                 </Modal>
             </Container>
